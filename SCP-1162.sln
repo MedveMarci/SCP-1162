@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32602.291
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCP-1162", "Scp1162\SCP-1162.csproj", "{8A5C60D4-F705-4C74-A359-7D8E8E916D98}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		LabApi|x64 = LabApi|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8A5C60D4-F705-4C74-A359-7D8E8E916D98}.LabApi|x64.ActiveCfg = LabApi|x64
+		{8A5C60D4-F705-4C74-A359-7D8E8E916D98}.LabApi|x64.Build.0 = LabApi|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {337E7DB4-99A0-4159-ABC5-393D4E00507C}
+	EndGlobalSection
+EndGlobal
