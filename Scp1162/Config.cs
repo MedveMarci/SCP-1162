@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using InventorySystem.Items.Usables.Scp330;
 using MapGeneration;
 using UnityEngine;
 
@@ -8,6 +9,9 @@ namespace SCP1162;
 public class Config
 {
     [Description("Enable debug messages")] public bool Debug { get; set; } = false;
+    
+    [Description("Can Scp-3114 use SCP-1162?")]
+    public bool CanScp3114Use { get; set; } = false;
 
     [Description(
         "How much damage should players get when using Scp-1162 without holding an item in hand (set to 0 to disable)")]
@@ -43,6 +47,27 @@ public class Config
         ItemType.Coin,
         ItemType.Flashlight,
         ItemType.Radio
+    ];    
+    
+    [Description("The chance that the item will be a random candy in % (set to 0 to disable)")]
+    public float PercentCandy { get; set; } = 10;
+
+    [Description("What candies should Scp-1162 be able to give")]
+    public List<CandyKindID> CandiesToGive { get; set; } =
+    [
+        CandyKindID.Rainbow,
+        CandyKindID.Yellow,
+        CandyKindID.Purple,
+        CandyKindID.Red,
+        CandyKindID.Green,
+        CandyKindID.Blue,
+        CandyKindID.Pink,
+        CandyKindID.Orange,
+        CandyKindID.White,
+        CandyKindID.Gray,
+        CandyKindID.Black,
+        CandyKindID.Brown,
+        CandyKindID.Evil
     ];
 
     [Description("Message sent when interacting with Scp-1162 without holding an item in hand")]
@@ -62,7 +87,7 @@ public class Config
         {
             RoomName = RoomName.Lcz173,
             Offset = new Vector3(16f, 12.7f, 3.7f),
-            Rotation = new Vector3(0f, 90f, 0f),
+            Rotation = new Vector3(0f, 0f, 0f),
             Chance = 100f
         }
     ];

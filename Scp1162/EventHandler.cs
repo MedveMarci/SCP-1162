@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using AdminToys;
 using CustomPlayerEffects;
+using InventorySystem.Items;
 using LabApi.Events.Arguments.PlayerEvents;
 using LabApi.Events.CustomHandlers;
 using LabApi.Features.Wrappers;
 using MEC;
+using PlayerRoles;
 using UnityEngine;
 using PrimitiveObjectToy = LabApi.Features.Wrappers.PrimitiveObjectToy;
 using Random = UnityEngine.Random;
@@ -68,7 +70,7 @@ public class EventHandler : CustomEventsHandler
             parentToy.Flags = PrimitiveFlags.None;
             parentToy.GameObject.name = $"SCP1162-{room.Name}-{Guid.NewGuid()}";
             parentToy.Position = mainOffset;
-            parentToy.Rotation = Quaternion.Euler(customRoomLocation.Rotation);
+            parentToy.Rotation = room.Transform.rotation * Quaternion.Euler(customRoomLocation.Rotation);
             
             foreach (var toyData in TextToys)
             {
@@ -103,9 +105,15 @@ public class EventHandler : CustomEventsHandler
 
             Timing.CallDelayed(0.1f, () =>
             {
-                var randomItem = items.RandomItem();
-                var item = player.AddItem(randomItem);
-                player.CurrentItem = item;
+                if (Plugin.Instance.Config.PercentCandy == 0 || Random.Range(0f, 100f) > Plugin.Instance.Config.PercentCandy)
+                {                
+                    var randomItem = items.RandomItem();
+                    var item = player.AddItem(randomItem);
+                    player.CurrentItem = item;
+                    return;
+                }
+                var randomCandy = Plugin.Instance.Config.CandiesToGive.RandomItem();
+                player.GiveCandy(randomCandy, ItemAddReason.Undefined);
             });
         }
         catch (Exception e)
@@ -121,6 +129,7 @@ public class EventHandler : CustomEventsHandler
             LogManager.Debug($"Player {ev.Player.Nickname} interacted with {ev.Interactable.GameObject.name}");
             if (ev.Interactable.GameObject.name != "SCP1162") return;
             if (Plugin.Instance.Config == null) return;
+            if (ev.Player.Role is RoleTypeId.Scp3114 && !Plugin.Instance.Config.CanScp3114Use) return;
             var percentDisappearing = Plugin.Instance.Config.PercentDisappearing;
             if (ev.Player.CurrentItem != null)
             {
