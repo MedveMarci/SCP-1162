@@ -17,4 +17,4 @@ An SCP: Secret Laboratory LabApi plugin which adds SCP-1162 into the game.
 # Credits
 
 * Original [plugin](https://github.com/Mar1ki/SCP1162) made by `Mar1ki`
-* Updated to LabApi by `MedveMarci`
+* Updated and maintained by `MedveMarci`
