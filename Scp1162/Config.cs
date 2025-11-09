@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using InventorySystem.Items.Usables.Scp330;
 using MapGeneration;
 using UnityEngine;
 
@@ -63,9 +62,7 @@ public class Config
         {
             RoomName = RoomName.Lcz173,
             Offset = new Vector3(16.414f, 13.234f, 3.690f),
-            RotationX = 0,
-            RotationY = 0,
-            RotationZ = 0,
+            Rotation = new Vector3(0f, 0f, 0f),
             Chance = 100f
         }
     ];
@@ -74,9 +71,7 @@ public class Config
     {
         public RoomName RoomName { get; set; }
         public Vector3 Offset { get; set; }
-        public float RotationX { get; set; }
-        public float RotationY { get; set; }
-        public float RotationZ { get; set; }
+        public Vector3 Rotation { get; set; }
         public float Chance { get; set; }
     }
 }
