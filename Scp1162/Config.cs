@@ -3,15 +3,23 @@ using System.ComponentModel;
 using InventorySystem.Items.Usables.Scp330;
 using MapGeneration;
 using UnityEngine;
+using YamlDotNet.Serialization;
 
 namespace SCP1162;
 
 public class Config
 {
     [Description("Enable debug messages")] public bool Debug { get; set; } = false;
-    
+
+    [YamlIgnore]
+    [Description("Should SCP-1162 use pickup interaction?")]
+    public bool UsePickup { get; set; } = false;
+
     [Description("Can Scp-3114 use SCP-1162?")]
     public bool CanScp3114Use { get; set; } = false;
+
+    [Description("Should Scp-1162 give the weapon with ammo (if the item given is a weapon)")]
+    public bool GiveWeaponWithAmmo { get; set; } = false;
 
     [Description(
         "How much damage should players get when using Scp-1162 without holding an item in hand (set to 0 to disable)")]
@@ -47,8 +55,8 @@ public class Config
         ItemType.Coin,
         ItemType.Flashlight,
         ItemType.Radio
-    ];    
-    
+    ];
+
     [Description("The chance that the item will be a random candy in % (set to 0 to disable)")]
     public float PercentCandy { get; set; } = 10;
 
